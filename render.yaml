@@ -1,0 +1,33 @@
+services:
+  # Express API. Render runs all commands from this directory, which contains
+  # the API package.json; it must not use the repository root or src/.
+  - type: web
+    name: parcelpulse-api
+    runtime: node
+    rootDir: backend-delivery
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DEMO_MODE
+        value: "false"
+
+  # React/Vite client. Configure VITE_API_URL in Render after the API URL is
+  # known, or supply it when creating the Blueprint.
+  - type: web
+    name: parcelpulse-web
+    runtime: static
+    rootDir: frontend-delivery
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        sync: false
