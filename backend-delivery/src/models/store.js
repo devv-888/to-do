@@ -1,0 +1,10 @@
+import bcrypt from 'bcrypt';
+export const db = { users:[], orders:[], deliveries:[], locations:[], notifications:[] };
+const id=()=>crypto.randomUUID();
+const agent={id:id(),full_name:'Alex Morgan',email:'driver@demo.local',phone:'555-0102',role:'delivery_agent',password_hash:await bcrypt.hash('DemoPass123!',12)};
+const customer={id:id(),full_name:'Jordan Lee',email:'customer@demo.local',phone:'555-0101',role:'customer',password_hash:await bcrypt.hash('DemoPass123!',12)};
+const admin={id:id(),full_name:'Demo Admin',email:'admin@demo.local',phone:'555-0100',role:'admin',password_hash:await bcrypt.hash('AdminPass123!',12)};
+db.users.push(agent,customer,admin);
+const order={id:id(),customer_id:customer.id,order_number:'DLV-10482',status:'OUT_FOR_DELIVERY',priority:'normal',total_amount:42.50,created_at:new Date().toISOString(),delivery_address:{address_line:'42 Market Street',city:'Bengaluru',latitude:12.9716,longitude:77.5946},items:[{product_name:'Weekly essentials',quantity:1,price:42.50}]}; db.orders.push(order);
+db.deliveries.push({id:id(),order_id:order.id,delivery_agent_id:agent.id,status:'OUT_FOR_DELIVERY',assigned_at:new Date().toISOString(),out_for_delivery_at:new Date().toISOString(),delivery_notes:'Leave with reception if unavailable'});
+export { id };

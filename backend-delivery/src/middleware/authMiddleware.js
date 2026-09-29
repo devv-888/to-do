@@ -1,0 +1,2 @@
+import { verifyToken } from '../utils/jwt.js'; import { fail } from '../utils/response.js';
+export const authenticate = (req, res, next) => { const token = req.headers.authorization?.replace(/^Bearer\s+/i, ''); if (!token) return fail(res,401,'Authentication required','UNAUTHENTICATED'); try { const p = verifyToken(token); req.user = { id:p.sub, role:p.role }; next(); } catch { return fail(res,401,'Session is invalid or expired','INVALID_TOKEN'); } };

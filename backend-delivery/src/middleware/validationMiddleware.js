@@ -1,0 +1,2 @@
+import { fail } from '../utils/response.js';
+export const validate = (schema) => (req,res,next) => { const parsed = schema.safeParse({ body:req.body, params:req.params, query:req.query }); if (!parsed.success) return fail(res,422,'Please check the submitted information','VALIDATION_ERROR'); req.validated = parsed.data; next(); };

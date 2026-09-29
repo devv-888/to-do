@@ -1,0 +1,2 @@
+import { fail } from '../utils/response.js';
+export const allowRoles = (...roles) => (req,res,next) => roles.includes(req.user?.role) ? next() : fail(res,403,'You do not have permission for this action','FORBIDDEN');

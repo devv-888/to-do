@@ -1,0 +1,1 @@
+const steps=['ASSIGNED','PICKED_UP','OUT_FOR_DELIVERY','DELIVERED'];export default function DeliveryProgress({status}){const active=steps.indexOf(status);return <ol className="progress">{steps.map((step,i)=><li className={i<=active?'done':''} key={step}>{step.replaceAll('_',' ')}</li>)}</ol>}
