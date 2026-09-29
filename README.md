@@ -2,6 +2,12 @@
 
 `frontend-delivery` is a Vite/React client and `backend-delivery` is an Express API. The client communicates only with the API; server credentials never enter the browser bundle.
 
+## Live application
+
+- Frontend: [to-do-ruby-eight.vercel.app](https://to-do-ruby-eight.vercel.app/)
+- Backend API: [to-do-2-0l7p.onrender.com](https://to-do-2-0l7p.onrender.com/)
+- API health: [to-do-2-0l7p.onrender.com/health](https://to-do-2-0l7p.onrender.com/health)
+
 ## Quick start
 
 1. Copy each `.env.example` to `.env` and set `JWT_SECRET` to a long random value.
